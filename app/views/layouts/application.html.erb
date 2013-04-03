@@ -12,11 +12,11 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
-  <h1>Bayeux 2013</h1>
+  <h1>The Global Collage</h1>
 
   <ul>
   <% if user_signed_in? %>
-    <li> <p> <%= link_to("Log0ut", destroy_user_session_path, :method => :delete) %> </p> </li>
+    <li> <p> <%= link_to("Logout", destroy_user_session_path, :method => :delete) %> </p> </li>
   <%else%>
     <li> <p> <%= link_to("Login", new_user_session_path) %> </li>
     <%end%>
@@ -30,10 +30,10 @@
     <%end%>
   </ul>
 
+  <input type="text" id="search" value=""/>
+  <button onclick="searchMap()">Search</button>
+
 
   <%= yield %>
-
-
-
 </body>
 </html>

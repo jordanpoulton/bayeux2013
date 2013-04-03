@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 group :development do
   gem 'pg'
+  gem 'thin'
 end
 
 gem 'devise'

@@ -1,70 +1,96 @@
-var map;
-var marker1;
+// var map;
+// var marker1;
+
+// $(function() {
+
+//   function initialize() {
+//     geocoder = new google.maps.Geocoder(); //For search_functionunction.js
+//     var mapOptions = {
+//       center: new google.maps.LatLng(51.50, -0.02),
+//       zoom: 12,
+//       minZoom: 2,
+//       maxZoom: 14,
+//       streetViewControl: false,
+//       mapTypeId: google.maps.MapTypeId.SATELLITE
+//     };
+//     map = new google.maps.Map(document.getElementById("map-canvas"),
+//     mapOptions);
+//     marker1 = new google.maps.Marker({
+//       position: new google.maps.LatLng(51.32, -0.5),
+//       title: "HelloWorld!"
+//     });
+//     marker1.setMap(map);
 
 
-function initialize() {
-  var mapOptions = {
-    center: new google.maps.LatLng(51.50, -0.02),
-    zoom: 8,
-    streetViewControl: false,
-    mapTypeId: google.maps.MapTypeId.HYBRID
-  };
-  map = new google.maps.Map(document.getElementById("map-canvas"),
-      mapOptions);
-  marker1 = new google.maps.Marker({
-    position: new google.maps.LatLng(51.32, -0.5),
-    title:"HelloWorld!"
-  });
-  marker1.setMap(map);
+//     var drawSquare = function(color, lat, lng, step) {
+//       var squareCoords = [
+//       new google.maps.LatLng(lat, lng), //Bottom Left
+//       new google.maps.LatLng(lat, lng + step), //Bottom Right
+//       new google.maps.LatLng(lat + step, lng + step), //Top Right
+//       new google.maps.LatLng(lat + step, lng), //Top Left
+//       new google.maps.LatLng(lat, lng) //Return
+//       ];
+//       var opacity = 0.5 - step / 2.5; // ligher for bigger squares
+//       var square = new google.maps.Polygon({
+//         clickable: true,
+//         paths: squareCoords,
+//         strokeColor: color,
+//         strokeOpacity: 0.6,
+//         strokeWeight: 2,
+//         fillColor: color,
+//         fillOpacity: opacity
+//       });
+
+//       square.setMap(map);
+//       google.maps.event.addListener(square, 'click', function() {
+//         infoWindow.open(map, this)
+//       });
+//     };
 
 
-  var drawSquare = function(color, lat, lng, step) {
-    var squareCoords = [
-    new google.maps.LatLng(lat,         lng       ),//Bottom Left
-    new google.maps.LatLng(lat,         lng + step),//Bottom Right
-    new google.maps.LatLng(lat + step,  lng + step),//Top Right
-    new google.maps.LatLng(lat + step,  lng       ),//Top Left
-    new google.maps.LatLng(lat,         lng       )//Return
-    ];
-    var opacity = 0.9 - step/2.5; // ligher for bigger squares
-    new google.maps.Polygon({
-      paths: squareCoords,
-      strokeColor: color,
-      strokeOpacity: 0.6,
-      strokeWeight: 2,
-      fillColor: color,
-      fillOpacity: opacity
-    }).setMap(map);
-  }
+//     //Info Window Overlay, bound to marker1
+//     var infoWindow = new google.maps.InfoWindow({
+//       content: "Some info"
+//     });
 
-  drawSquare("#ff6600", 51.50, 0, 0.01);
-  drawSquare("#FFCC00", 51.50, 0, 0.1);
-  drawSquare("#efefef", 51.50, 0, 1);
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
+//     google.maps.event.addDomListener(window, 'load', function() {
+//       infoWindow.open(map, marker1)
+//     });
 
 
-// Playing with popup windows
-var infoWindow = new google.maps.InfoWindow({
-  content: "Some info"
-});
 
-google.maps.event.addDomListener(window, 'load', function() {
-  infoWindow.open(map, marker1)
-});
+//     // for (var j=-100; j<100; j++){
+//     //   for (var i=5050; i<5250; i++){
+//     drawSquare("#ff6600", 51.5, 0.0, 0.1);
+//     //   }
+//     // }
 
-//Trying to overlay an image on the map
+//   }//End of initialize
 
-var imageBounds = new google.maps.LatLngBounds(
-  new google.maps.LatLng(51.40, 1.10),
-  new google.maps.LatLng(52.50, 2.10)
-  );
+//   google.maps.event.addDomListener(window, 'load', initialize);
 
-var jordanInLondon = new google.maps.GroundOverlay(
-  "http://www.jordanpoulton.com/wp-content/uploads/2013/03/JordanPoulton_site2.jpg",
-  imageBounds);
+// //Overlay an image
+//   var imageBounds = new google.maps.LatLngBounds(
+//   new google.maps.LatLng(51.50, -0.02), //Bottom Left
+//   new google.maps.LatLng(51.60, 0.10)); // Top Right
 
-google.maps.event.addDomListener(window, 'load', function() {jordanInLondon.setMap(map)});
+//   var jordanInLondon = new google.maps.GroundOverlay(
+//     "http://placehold.it/300x500",
+//   imageBounds);
 
-// https://developers.google.com/maps/documentation/javascript/overlays
+
+  // google.maps.event.addDomListener(window, 'load', function() {
+  //   jordanInLondon.setMap(map);
+  // });
+
+
+//   //Info Window Overlay
+//   var infoWindow = new google.maps.InfoWindow({
+//     content: "Some info"
+//   });
+
+//   google.maps.event.addDomListener(window, 'load', function() {
+//     infoWindow.open(map, marker1)
+//   });
+
+// });

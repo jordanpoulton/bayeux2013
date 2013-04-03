@@ -21,3 +21,7 @@ body {
 html {
   height: 100%;
 }
+
+.form-claim-a-spot {
+  background-color: blue;
+}

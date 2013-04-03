@@ -4,8 +4,10 @@
   <title>Bayeux2013</title>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxbg23URQKMRsJ71bUCVewnTsXRVttcgM&sensor=true"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -35,5 +37,9 @@
 
 
   <%= yield %>
+
+  <div id="claim-a-spot"
+    <%= render :partial => "layouts/new_user_claim_form" %>
+  </div>
 </body>
 </html>

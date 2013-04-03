@@ -69,20 +69,35 @@ var createTile = function(argLat, argLng, step, imageLink, content) {
 
   setImage.setMap(map) //Set the image to the map
 
+  //Create a dialog popup to claim a spot
+  google.maps.event.addListener(setImage, 'click', function() {
+    $("#claim-a-spot").dialog({
+      width:800,
+      height: 600,
+      modal: true
+    })
+  });
+
 
   //Create a listener that will display an infoWindow when the image is clicked.
-  google.maps.event.addListener(setImage, 'click', function() {
-    if (infowindow !== undefined)
-    {
-      infowindow.close();
-    }
+  //Doesn't seem to work right now
+  // google.maps.event.addListener(setImage, 'click', function() {
+  //   if (infowindow !== undefined)
+  //   {
+  //     infowindow.close();
+  //   }
 
-    infowindow = new google.maps.InfoWindow;
-    infowindow.setContent('To claim this spot, use the ID LATITUDE: '+argLat+' - LONGTITUDE: '+argLng);
-    var position = new google.maps.LatLng(argLat, argLng)
-    infowindow.setPosition(position);
-    infowindow.open(map);
-  });
+  //   infowindow = new google.maps.InfoWindow;
+  //   infowindow.setContent('To claim this spot, use the ID LATITUDE: '+argLat+' - LONGTITUDE: '+argLng);
+  //   var position = new google.maps.LatLng(argLat, argLng)
+  //   infowindow.setPosition(position);
+  //   infowindow.open(map);
+  // });
+
+  // //Create a listener that will destroy a window if it's double clicked
+  // google.maps.event.addListener(setImage, 'dblclick', function() {
+  //   infowindow.setMap(null)
+  // });
 }
 
 //get long/lat coords:

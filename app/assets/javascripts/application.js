@@ -76,6 +76,9 @@ var createTile = function(argLat, argLng, step, imageLink, content) {
       height: 600,
       modal: true
     })
+    $("#user_lat").val(argLat)
+    $("#user_lng").val(argLng)
+
   });
 
 

@@ -1,1 +1,40 @@
-<h1> Oi Oi </h1>
+<h1> Sign up to claim your spot</h1>
+
+<div>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= field_set_tag 'Account Details', :class => 'account-details' do %>
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email %></div>
+
+    <div><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+    <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></div>
+
+  <%end%>
+
+  <%= field_set_tag 'Your patch', :class => 'patch_details' do %>
+
+    <div id="autocompleted_lat"><%= f.label :lat %><br />
+    <%= f.text_field :lat %></div>
+
+    <div id="autocompleted_lng"><%= f.label :lng %><br />
+    <%= f.text_field :lng %></div>
+
+    <div><%= f.label :image_link %><br />
+    <%= f.text_field :image_link, :placeholder => "Link to the image you want to display (use the whole thing: http://www.blah.com....)"%></div>
+
+    <div><%= f.label :content %><br />
+    <%= f.text_field :content, :placeholder => "The content you want to display when someone clicks your image - Be Imaginative!" %></div>
+
+  <%end%>
+
+  <div id="submit_patch_form"><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>

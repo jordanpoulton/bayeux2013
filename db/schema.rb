@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20130404132739) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "lat"
-    t.string   "lng"
+    t.float    "lat"
+    t.float    "lng"
     t.string   "image_link"
     t.text     "content"
   end

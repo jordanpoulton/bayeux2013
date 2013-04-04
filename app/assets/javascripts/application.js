@@ -25,6 +25,7 @@ function initialize() {
     minZoom: 10,
     maxZoom: 14,
     streetViewControl: false,
+    draggable: false,
     mapTypeId: google.maps.MapTypeId.SATELLITE
   };
   map = new google.maps.Map(document.getElementById("map-canvas"),
@@ -34,16 +35,15 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', function() {
   initialize();
   google.maps.event.addDomListener(map, 'bounds_changed', function() {
-    // var right = map.getBounds().getNorthEast().lat().toFixed(2);
-    // var left = map.getBounds().getSouthWest().lat().toFixed(2);
-    // var top = map.getBounds().getNorthEast().lng().toFixed(2);
-    // var bottom = map.getBounds().getSouthWest().lng().toFixed(2);
-    // console.log(left, right)
-    // for (var i=left; i<right; i+=0.01){
-    //   for(var j=bottom; j<top; j+=0.01){
-        // createTile(51.51, -0.02, 0.01, "http://placehold.it/300x500", "Jordan rocks");
-    //   }
-    // }
+    var right = map.getBounds().getNorthEast().lat().toFixed(2);
+    var left = map.getBounds().getSouthWest().lat().toFixed(2);
+    var top = map.getBounds().getNorthEast().lng().toFixed(2);
+    var bottom = map.getBounds().getSouthWest().lng().toFixed(2);
+    //Do ajax get request to get all users in the database that have chosen tiles that should sit in the currnet view
+    //iterate over the JSON that is returned and use the CreateTile function on each so that all the tiles are drawn
+    $.getJSON("/draw_tiles", {right: right, left:left, top:top, bottom:bottom}).done(function(data) {
+      console.log(data)//Now need to pass each object to CreateTile
+    })
     google.maps.event.addListener(map, 'click', function(event){
       var lat = parseFloat(event["latLng"]["jb"].toFixed(2));
       var lng = parseFloat(event["latLng"]["kb"].toFixed(2));

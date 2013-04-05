@@ -21,7 +21,7 @@ function initialize() {
   geocoder = new google.maps.Geocoder(); //For search_function.js
   var mapOptions = {
     center: new google.maps.LatLng(51.50, -0.02),
-    zoom: 14,
+    zoom: 12,
     minZoom: 10,
     maxZoom: 16,
     streetViewControl: false,
@@ -35,7 +35,7 @@ function initialize() {
 
     function searchMap() {
       var search = $("#search").val();
-      geocoder.geocode( { "address": "london"}, function(results, status) {
+      geocoder.geocode( { "address": search}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           map.setCenter(results[0].geometry.location);
           var marker = new google.maps.Marker({

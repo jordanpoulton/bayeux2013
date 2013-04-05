@@ -2,39 +2,46 @@
 <html>
 <head>
   <title>Bayeux2013</title>
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+  <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxbg23URQKMRsJ71bUCVewnTsXRVttcgM&sensor=true"></script>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
   <%= csrf_meta_tags %>
+
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class='navbar-inner'>
+      <div class="container pull-left">
+        <a class="brand" href="#">The Global Collage</a>
+
+        <ul class="nav">
+          <li class="divider-vertical"><%= link_to("More info", "#")%> </li>
+          <% if user_signed_in? %>
+          <li class="divider-vertical"><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
+          <%else%>
+          <li class="divider-vertical"><%= link_to("Login", new_user_session_path) %></li>
+          <%end%>
+          <% if user_signed_in? %>
+          <li class="divider-vertical"><%= link_to('Edit Details', edit_user_registration_path) %></li>
+          <%else%>
+          <li class="divider-vertical"><%= link_to("Sign up", new_user_registration_path) %></li>
+          <%end%>
+        </ul>
+        <form class="navbar-form pull-right">
+          <input type="text" id="search" value=""/><button class="btn search_button">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </head>
-<body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<body class="main-body">
 
-  <h1>The Global Collage</h1>
-
-  <ul>
-  <% if user_signed_in? %>
-    <li> <p> <%= link_to("Logout", destroy_user_session_path, :method => :delete) %> </p> </li>
-  <%else%>
-    <li> <p> <%= link_to("Login", new_user_session_path) %> </li>
-    <%end%>
-  </ul>
-
-  <ul>
-    <% if user_signed_in? %>
-    <li> <%= link_to('Edit Details', edit_user_registration_path) %> </li>
-    <%else%>
-    <li> <%= link_to("Sign up", new_user_registration_path) %> </li>
-    <%end%>
-  </ul>
-
-  <input type="text" id="search" value=""/>
-  <button onclick="searchMap()">Search</button>
-
+  <% if flash[:notice] %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  <%end%>
 
   <%= yield %>
 

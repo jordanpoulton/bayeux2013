@@ -2,7 +2,6 @@ Bayeux2013::Application.routes.draw do
   devise_for :users
 
   root :to => "users#index"
-  match '/page2', :to => 'users#show'
   match 'logout' => 'devise/sessions#destroy'
   match '/draw_tiles' => 'users#draw_tiles'
 

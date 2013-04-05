@@ -31,21 +31,35 @@ function initialize() {
   map = new google.maps.Map(document.getElementById("map-canvas"),
   mapOptions);
 
-  function searchMap() {
-    var search = document.getElementById("search").value;
-    geocoder.geocode( { "address": search}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
+  $(".navbar-form").on('submit', searchMap);
+
+    function searchMap() {
+      var search = $("#search").val();
+      geocoder.geocode( { "address": "london"}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+      return false;
   }
 }
+
+!function(d,s,id){
+  var js,fjs=d.getElementsByTagName(s)[0];
+  if(!d.getElementById(id)){
+    js=d.createElement(s);
+    js.id=id;
+    js.src="https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js,fjs);
+  }}(document,"script","twitter-wjs");
+
+
 
 google.maps.event.addDomListener(window, 'load', function() {
   initialize();
@@ -66,7 +80,7 @@ google.maps.event.addDomListener(window, 'load', function() {
     google.maps.event.addListener(map, 'click', function(event){
       var lat = parseFloat(event["latLng"]["jb"].toFixed(2));
       var lng = parseFloat(event["latLng"]["kb"].toFixed(2));
-      createTile(lat, lng, 0.01, "http://www.jordanpoulton.com/wp-content/uploads/2013/04/Im-youts.jpg", "jordan");
+      createTile(lat, lng, 0.01, "http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-make-me-yours-12.png", "http://www.jordanpoulton.com");
     })
   });
 });
@@ -91,8 +105,8 @@ var createTile = function(argLat, argLng, step, imageLink, content) {
   //Create a dialog popup to claim a spot
   google.maps.event.addListener(setImage, 'click', function() {
     $("#claim-a-spot").dialog({
-      width:800,
-      height: 600,
+      width: 800,
+      height: 800,
       modal: true
     })
     $("#user_lat").val(argLat)

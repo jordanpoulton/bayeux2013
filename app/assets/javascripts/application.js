@@ -23,7 +23,7 @@ function initialize() {
     center: new google.maps.LatLng(51.50, -0.02),
     zoom: 14,
     minZoom: 10,
-    maxZoom: 14,
+    maxZoom: 16,
     streetViewControl: false,
     draggable: false,
     mapTypeId: google.maps.MapTypeId.SATELLITE

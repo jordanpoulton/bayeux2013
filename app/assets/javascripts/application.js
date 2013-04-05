@@ -18,7 +18,7 @@
 var map, infowindow;
 
 function initialize() {
-  // geocoder = new google.maps.Geocoder(); //For search_function.js
+  geocoder = new google.maps.Geocoder(); //For search_function.js
   var mapOptions = {
     center: new google.maps.LatLng(51.50, -0.02),
     zoom: 14,
@@ -30,6 +30,21 @@ function initialize() {
   };
   map = new google.maps.Map(document.getElementById("map-canvas"),
   mapOptions);
+
+  function searchMap() {
+    var search = document.getElementById("search").value;
+    geocoder.geocode( { "address": search}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
 }
 
 google.maps.event.addDomListener(window, 'load', function() {
@@ -43,6 +58,10 @@ google.maps.event.addDomListener(window, 'load', function() {
     //iterate over the JSON that is returned and use the CreateTile function on each so that all the tiles are drawn
     $.getJSON("/draw_tiles", {right: right, left:left, top:top, bottom:bottom}).done(function(data) {
       console.log(data)//Now need to pass each object to CreateTile
+      $.each(data, function(i,e){
+        createTile(e.lat, e.lng, 0.01, e.image_link, e.content)
+      });
+        // createTile(self.lat, self.lng, 0.01, self.image_link, self.content)};
     })
     google.maps.event.addListener(map, 'click', function(event){
       var lat = parseFloat(event["latLng"]["jb"].toFixed(2));
